@@ -1,0 +1,4 @@
+[submodule "client"]
+	path = client
+	url = https://github.com/HarshilSharaf/Jewellery-Store-Management-System-Client
+	branch = main
