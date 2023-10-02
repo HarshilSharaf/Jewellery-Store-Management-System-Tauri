@@ -15,7 +15,7 @@ export class StoreService {
   initializeStore() :Promise<any> {
     return new Promise(async (resolve,reject) => {
       this.store = new Store('.settings.dat')
-      const authData = await this.store.get("authData");
+      const authData = await this.get("authData");
       const currentDate = new Date().getTime()
       const expirationDate = new Date(authData?.expiration).getTime()
       const dbInfo = await this.get('defaultDbInfo')
