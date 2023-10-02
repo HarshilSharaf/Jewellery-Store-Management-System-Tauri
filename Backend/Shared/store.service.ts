@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class StoreService {
 
-  public store:any
+  private store:any
 
   constructor() { }
 
@@ -18,7 +18,7 @@ export class StoreService {
       const authData = await this.store.get("authData");
       const currentDate = new Date().getTime()
       const expirationDate = new Date(authData?.expiration).getTime()
-      const dbInfo = await this.store.get('defaultDbInfo')
+      const dbInfo = await this.get('defaultDbInfo')
       if(!dbInfo || dbInfo == null) {
         // Add a fallback database to connect to
         const defaultDbInfo: SettingsModel = {
@@ -29,8 +29,7 @@ export class StoreService {
           DATABASE_HOST: 'localhost',
           LAST_UPDATED_ON: new Date().toUTCString(),
         };
-        await this.store.set('defaultDbInfo', defaultDbInfo);
-        await this.store.save();
+        this.set('defaultDbInfo', defaultDbInfo);
       }
 
       //delete authData from store if it is expired
@@ -40,6 +39,34 @@ export class StoreService {
         await this.store.save();
       }
       resolve(this.store);
+    })
+  }
+
+  get(key:string) {
+    return this.store.get(key)
+  }
+
+  set(key:string, value:any) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await this.store.set(key, value);
+        await this.store.save()
+        resolve(true)
+      } catch (error) {
+        reject(false)
+      }
+    })
+  }
+
+  delete(key:string) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await this.store.delete(key);
+        await this.store.save();
+        resolve(true)
+      } catch (error) {
+        reject(false)
+      }
     })
   }
 }

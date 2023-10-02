@@ -15,9 +15,9 @@ export class DatabaseService {
   initializeDbConnection():Promise<any> {
     return new Promise(async (resolve,reject) => {
 
-      this.dbConnectionInfo = await this.storeService.store.get("currentDbInfo")
+      this.dbConnectionInfo = await this.storeService.get("currentDbInfo")
       if(this.dbConnectionInfo == null) {
-        this.dbConnectionInfo = await this.storeService.store.get("defaultDbInfo")
+        this.dbConnectionInfo = await this.storeService.get("defaultDbInfo")
       } 
 
       const dbURL = 'mysql://' +
