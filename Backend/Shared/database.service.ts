@@ -39,7 +39,6 @@ export class DatabaseService {
   }
 
   showErrorAndRedirectToSettingsPage(error: any) {
-    let timerInterval: any;
     Swal.fire({
       title: 'Could Not Connect To Database!',
       html: `<span class="text-danger"> Error: ${error} 
@@ -51,16 +50,7 @@ export class DatabaseService {
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
-        const b = Swal.getHtmlContainer()?.querySelector(
-          'b'
-        ) as HTMLElement;
-        timerInterval = setInterval(() => {
-          b.textContent = Swal.getTimerLeft()?.toString() ?? '000000';
-        }, 100);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
+      }
     }).then((result) => {
       if (result.dismiss === Swal.DismissReason.timer) {
         this.router.navigate(['settings'], {
