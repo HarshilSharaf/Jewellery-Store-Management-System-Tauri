@@ -1,0 +1,22 @@
+CREATE TABLE `products` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `productGuid` CHAR(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `productWeight` DOUBLE NOT NULL,
+  `productDescription` TEXT,
+  `imagePath` TEXT,
+  `isSold` TINYINT(1) DEFAULT '0',
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedAt` DATETIME DEFAULT NULL,
+  `mid` INT NOT NULL,
+  `sid` INT NOT NULL,
+  `pid` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `products_product_guid` (`productGuid`),
+  KEY `idx_mid` (`mid`),
+  KEY `idx_sid` (`sid`),
+  KEY `idx_pid` (`pid`),
+  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `mastercategories` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `products_ibfk_10` FOREIGN KEY (`sid`) REFERENCES `subcategories` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `products_ibfk_101` FOREIGN KEY (`pid`) REFERENCES `productcategories` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
