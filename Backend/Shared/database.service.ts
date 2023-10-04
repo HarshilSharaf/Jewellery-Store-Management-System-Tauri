@@ -65,7 +65,7 @@ export class DatabaseService {
       if (result.dismiss === Swal.DismissReason.timer) {
         this.router.navigate(['settings'], {
           state: {
-            error: error,
+            error: error.toString(),
           },
         });
       }
