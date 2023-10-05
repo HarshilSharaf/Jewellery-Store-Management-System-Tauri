@@ -3,11 +3,12 @@ import * as dayjs from 'dayjs';
 import { from } from 'rxjs';
 import { CustomerDetails } from 'client/app/modules/customers/models/customerDetails';
 import { DatabaseService } from '../Shared/database.service';
+import { CustomerServiceInterface } from 'client/app/interfaces/Customers/customer-service-interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DbCustomersService {
+export class DbCustomersService implements CustomerServiceInterface{
 
   constructor(private databaseService:DatabaseService) { }
 

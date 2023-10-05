@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { from } from 'rxjs';
 import { DatabaseService } from '../Shared/database.service';
+import { InventoryServiceInterface } from 'client/app/interfaces/Inventory/inventory-service-interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DbInventoryService {
+export class DbInventoryService implements InventoryServiceInterface {
 
   constructor(private databaseService:DatabaseService) { }
 

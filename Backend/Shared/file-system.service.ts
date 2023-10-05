@@ -5,16 +5,17 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import { DOC_ORIENTATION } from 'ngx-image-compress';
 import { LoggerService } from './logger.service';
 import { Injectable } from '@angular/core';
+import { FileSystemServiceInterface } from 'client/app/interfaces/Shared/file-system-service-interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FileSystemService {
+export class FileSystemService implements FileSystemServiceInterface{
 
-  private imagesParentDirectoryForApp = 'Jewellery-Store-Management-System'
-  private customerImagesDirectoryName = 'customerImages'
+  public imagesParentDirectoryForApp = 'Jewellery-Store-Management-System'
+  public customerImagesDirectoryName = 'customerImages'
   public customerImagesDir = ''
-  private productImagesDirectoryName = 'productImages'
+  public productImagesDirectoryName = 'productImages'
   public productImagesDir = ''
   public userImagesDir = ''
   public userImagesDirectoryName = 'userImages'

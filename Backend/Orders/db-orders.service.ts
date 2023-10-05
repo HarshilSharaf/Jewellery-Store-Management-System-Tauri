@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { DatabaseService } from '../Shared/database.service';
+import { OrdersServiceInterface } from 'client/app/interfaces/Orders/orders-service-interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DbOrdersService {
+export class DbOrdersService implements OrdersServiceInterface{
 
   constructor(private databaseService:DatabaseService) { }
 

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { from } from 'rxjs';
 import { DatabaseService } from '../../Shared/database.service';
+import { SubCategoryServiceInterface } from 'client/app/interfaces/Categories/SubCategories/sub-category-service-interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DbSubCategoriesService {
+export class DbSubCategoriesService implements SubCategoryServiceInterface{
 
   constructor(private databaseService: DatabaseService) { }
 

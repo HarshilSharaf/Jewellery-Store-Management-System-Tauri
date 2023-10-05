@@ -4,11 +4,12 @@ import { StoreService } from './store.service';
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { DatabaseServiceInterface } from 'client/app/interfaces/Shared/database-service-interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DatabaseService {
+export class DatabaseService implements DatabaseServiceInterface {
 
   public dbConnection:any;
   private dbConnectionInfo!:SettingsModel

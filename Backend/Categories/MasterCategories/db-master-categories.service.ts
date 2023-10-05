@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { from } from 'rxjs';
 import { DatabaseService } from '../../Shared/database.service';
+import { MasterCategoryServiceInterface } from 'client/app/interfaces/Categories/MasterCategories/master-category-service-interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DbMasterCategoriesService {
+export class DbMasterCategoriesService implements MasterCategoryServiceInterface{
 
   constructor(private databaseService:DatabaseService) { }
 
