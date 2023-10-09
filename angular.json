@@ -30,7 +30,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "client/favicon.ico",
-              "client/assets"
+              "client/assets",
+              {"glob": "splashscreen.js", "input": "Backend/Shared/", "output": "/assets/splashscreens/"}
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",

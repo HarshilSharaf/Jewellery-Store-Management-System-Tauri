@@ -4,7 +4,8 @@
     "beforeBuildCommand": "npm run build",
     "beforeDevCommand": "npm run dev",
     "devPath": "http://localhost:4200",
-    "distDir": "../dist"
+    "distDir": "../dist",
+    "withGlobalTauri": true
   },
   "package": {
     "productName": "Jewellery-Store-Management-System",
@@ -89,7 +90,17 @@
         "height": 600,
         "resizable": true,
         "title": "Jewellery-Store-Management-System",
-        "width": 800
+        "width": 800,
+        "label": "main",
+        "visible": false
+      },
+      {
+        "width": 800,
+        "height": 600,
+        "decorations": false,
+        "url": "assets/splashscreens/splashscreen-1/index.html",
+        "label": "splashscreen",
+        "center": true
       }
     ]
   }
