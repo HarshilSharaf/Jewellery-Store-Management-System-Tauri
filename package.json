@@ -40,6 +40,7 @@
     "ngx-bootstrap": "^12.0.0",
     "ngx-image-compress": "^15.1.6",
     "ngx-print": "^1.5.1",
+    "ngx-skeleton-loader": "^9.0.0",
     "ngx-ui-loader": "^13.0.0",
     "rxjs": "~7.8.1",
     "sweetalert2": "^11.10.4",
