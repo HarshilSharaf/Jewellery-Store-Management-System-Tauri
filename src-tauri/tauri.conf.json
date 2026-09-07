@@ -1,53 +1,47 @@
 {
-  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "Jewellery-Store-Management-System",
+  "version": "0.1.0",
+  "identifier": "com.jewellery-store-management.system",
   "build": {
     "beforeBuildCommand": "npm run build",
     "beforeDevCommand": "npm run dev",
-    "devPath": "http://localhost:4200",
-    "distDir": "../dist",
-    "withGlobalTauri": true
+    "devUrl": "http://localhost:4200",
+    "frontendDist": "../dist"
   },
-  "package": {
-    "productName": "Jewellery-Store-Management-System",
-    "version": "0.1.0"
-  },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "path": {
-        "all": true
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "fullscreen": false,
+        "height": 600,
+        "resizable": true,
+        "title": "Jewellery-Store-Management-System",
+        "width": 800,
+        "label": "main",
+        "visible": false
       },
-      "fs": {
-        "all": false,
-        "copyFile": false,
-        "createDir": true,
-        "exists": true,
-        "readDir": true,
-        "readFile": true,
-        "removeDir": false,
-        "removeFile": true,
-        "renameFile": true,
-        "scope": ["$PICTURE/*/**"],
-        "writeFile": true
-      },
-      "protocol": {
-        "asset": true,
-        "assetScope": ["**"]
-    },
-    "process": {
-      "all": false,
-      "exit": false,
-      "relaunch": true,
-      "relaunchDangerousAllowSymlinkMacos": false
+      {
+        "width": 800,
+        "height": 600,
+        "decorations": false,
+        "url": "assets/splashscreens/splashscreen-1/index.html",
+        "label": "splashscreen",
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": null,
+      "assetProtocol": {
+        "enable": true,
+        "scope": ["$PICTURE/**"]
+      }
     }
-    },
-    "bundle": {
+  },
+  "bundle": {
       "active": true,
       "category": "DeveloperTool",
       "copyright": "",
-      "deb": {
-        "depends": []
-      },
       "externalBin": [],
       "icon": [
         "icons/32x32.png",
@@ -56,7 +50,6 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.jewellery-store-management.system",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -77,31 +70,6 @@
           "type": "downloadBootstrapper"
         }
       }
-    },
-    "security": {
-      "csp": null
-    },
-    "updater": {
-      "active": false
-    },
-    "windows": [
-      {
-        "fullscreen": false,
-        "height": 600,
-        "resizable": true,
-        "title": "Jewellery-Store-Management-System",
-        "width": 800,
-        "label": "main",
-        "visible": false
-      },
-      {
-        "width": 800,
-        "height": 600,
-        "decorations": false,
-        "url": "assets/splashscreens/splashscreen-1/index.html",
-        "label": "splashscreen",
-        "center": true
-      }
-    ]
-  }
+  },
+  "plugins": {}
 }

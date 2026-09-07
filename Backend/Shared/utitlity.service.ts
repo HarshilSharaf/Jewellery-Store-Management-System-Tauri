@@ -1,5 +1,5 @@
-import { convertFileSrc } from "@tauri-apps/api/tauri";
-import { relaunch } from '@tauri-apps/api/process';
+import { convertFileSrc } from "@tauri-apps/api/core";
+import { relaunch } from '@tauri-apps/plugin-process';
 import { Injectable } from '@angular/core';
 import { UtilityServiceInterface } from "client/app/interfaces/Shared/utility-service-interface";
 

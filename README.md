@@ -5,7 +5,7 @@ It operates offline and does not require an active internet connection.
 The main repository for running this project utilizes this [submodule](https://github.com/HarshilSharaf/Jewellery-Store-Management-System-Client/) for the client-side code.
 The application runs on an Angular frontend and Tauri backend, and it requires a web view to be installed on the target device.
 
-This application runs on Tauri v1.5 and Rust v1.7.
+This application runs on Tauri v2 and Rust 1.77 or newer.
 
 ## Features
 
@@ -19,6 +19,21 @@ This application runs on Tauri v1.5 and Rust v1.7.
 - Order Receipt Download as PDF
 
 ## Run Locally
+
+On Linux Mint 22 or Ubuntu 24.04, install the Tauri 2 native dependencies first:
+
+```bash
+sudo apt update
+sudo apt install -y \
+  libwebkit2gtk-4.1-dev \
+  build-essential \
+  curl \
+  wget \
+  file \
+  libssl-dev \
+  libayatana-appindicator3-dev \
+  librsvg2-dev
+```
 
 1. Clone the project:
 
@@ -41,7 +56,7 @@ npm install
 
 ```bash
 cd src-tauri
-cargo update
+cargo check
 ```
 
 5. Create the database schema:

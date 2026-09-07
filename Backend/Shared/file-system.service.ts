@@ -1,4 +1,4 @@
-import * as tauriFS from '@tauri-apps/api/fs';
+import * as tauriFS from '@tauri-apps/plugin-fs';
 import { pictureDir } from '@tauri-apps/api/path';
 import * as base64js from 'base64-js'
 import { NgxImageCompressService } from 'ngx-image-compress';
@@ -38,7 +38,7 @@ export class FileSystemService implements FileSystemServiceInterface{
 
     try {
       if (await tauriFS.exists(`${dirPath}\\${fileName}`)) {
-        await tauriFS.removeFile(`${dirPath}\\${fileName}`);
+        await tauriFS.remove(`${dirPath}\\${fileName}`);
       }
     } catch (error) {
       this.loggerService.LogError(`Error to delete file: ${fileName} from path: ${dirPath}`)
@@ -52,8 +52,8 @@ export class FileSystemService implements FileSystemServiceInterface{
       fileReader.onload = async (event:any) => {
         try {
           const result = await this.imageCompressService.compressFile(event.target.result, DOC_ORIENTATION.Default, 50, 60)
-          await tauriFS.writeBinaryFile(savePath, base64js.toByteArray(result.split(',')[1]), {
-            dir: tauriFS.BaseDirectory.Picture
+          await tauriFS.writeFile(savePath, base64js.toByteArray(result.split(',')[1]), {
+            baseDir: tauriFS.BaseDirectory.Picture
           })
           console.log("File successfully saved:")
           resolve()
@@ -69,7 +69,7 @@ export class FileSystemService implements FileSystemServiceInterface{
   async getCustomerImageInBase64(imageFileName:string):Promise<string> {
     if (imageFileName) {
       try {
-        const imageFile = await tauriFS.readBinaryFile(`${this.customerImagesDir}\\${imageFileName}`)
+        const imageFile = await tauriFS.readFile(`${this.customerImagesDir}\\${imageFileName}`)
 
         // Convert the Uint8Array to Base64
         const base64String = base64js.fromByteArray(imageFile)
@@ -108,7 +108,7 @@ export class FileSystemService implements FileSystemServiceInterface{
   async getProductImageInBase64(imageFileName:string):Promise<string> {
     if (imageFileName) {
       try {
-        const imageFile = await tauriFS.readBinaryFile(`${this.productImagesDir}\\${imageFileName}`)
+        const imageFile = await tauriFS.readFile(`${this.productImagesDir}\\${imageFileName}`)
 
         // Convert the Uint8Array to Base64
         const base64String = base64js.fromByteArray(imageFile)
@@ -166,8 +166,8 @@ export class FileSystemService implements FileSystemServiceInterface{
   const saveToPath = customerImagesDirPath + '\\' + imageFileName
   
     //create directory if not exists
-      if (!await tauriFS.exists(customerImagesDirPath, { dir: tauriFS.BaseDirectory.Picture })) {
-        await tauriFS.createDir(customerImagesDirPath, { dir: tauriFS.BaseDirectory.Picture })
+      if (!await tauriFS.exists(customerImagesDirPath, { baseDir: tauriFS.BaseDirectory.Picture })) {
+        await tauriFS.mkdir(customerImagesDirPath, { baseDir: tauriFS.BaseDirectory.Picture, recursive: true })
     }
 
   return this.compressAndSaveImage(saveToPath, imageFile, 'saveCustomerImage')
@@ -180,8 +180,8 @@ export class FileSystemService implements FileSystemServiceInterface{
     const saveToPath = productImagesDirPath + '\\' + imageFileName
 
     //create directory if not exists
-    if (!await tauriFS.exists(productImagesDirPath, { dir: tauriFS.BaseDirectory.Picture })) {
-        await tauriFS.createDir(productImagesDirPath, { dir: tauriFS.BaseDirectory.Picture })
+    if (!await tauriFS.exists(productImagesDirPath, { baseDir: tauriFS.BaseDirectory.Picture })) {
+      await tauriFS.mkdir(productImagesDirPath, { baseDir: tauriFS.BaseDirectory.Picture, recursive: true })
     }
     return this.compressAndSaveImage(saveToPath, imageFile,'saveProductImage')
 
@@ -239,8 +239,8 @@ export class FileSystemService implements FileSystemServiceInterface{
     const saveToPath = this.userImagesDir + '\\' + imageFileName
 
     //create directory if not exists
-    if (!await tauriFS.exists(this.userImagesDir, { dir: tauriFS.BaseDirectory.Picture })) {
-        await tauriFS.createDir(this.userImagesDir, { dir: tauriFS.BaseDirectory.Picture })
+    if (!await tauriFS.exists(this.userImagesDir, { baseDir: tauriFS.BaseDirectory.Picture })) {
+      await tauriFS.mkdir(this.userImagesDir, { baseDir: tauriFS.BaseDirectory.Picture, recursive: true })
     }
     return this.compressAndSaveImage(saveToPath, imageFile, 'saveUserImage')
 

@@ -1,5 +1,5 @@
 function close_splashscreen() {
-  const invoke = window.__TAURI__.invoke;
+  const invoke = window.__TAURI__.core.invoke;
   // close splashscreen after app loads
   document.addEventListener("DOMContentLoaded", () => {
     // close splashscreen after 2.5 seconds

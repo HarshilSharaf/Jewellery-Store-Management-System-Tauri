@@ -1,5 +1,5 @@
 import { SettingsModel } from 'client/app/modules/settings/models/settings-model';
-import { Store } from 'tauri-plugin-store-api';
+import { Store } from '@tauri-apps/plugin-store';
 
 import { Injectable } from '@angular/core';
 import { StoreServiceInterface } from 'client/app/interfaces/Shared/store-service-interface';
@@ -15,7 +15,7 @@ export class StoreService implements StoreServiceInterface{
 
   initializeStore() :Promise<any> {
     return new Promise(async (resolve,reject) => {
-      this.store = new Store('.settings.dat')
+      this.store = await Store.load('.settings.dat')
       const authData = await this.get("authData");
       const currentDate = new Date().getTime()
       const expirationDate = new Date(authData?.expiration).getTime()

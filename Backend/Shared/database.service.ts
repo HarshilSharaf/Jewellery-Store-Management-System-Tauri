@@ -1,5 +1,5 @@
 import { SettingsModel } from 'client/app/modules/settings/models/settings-model';
-import Database from "tauri-plugin-sql-api";
+import Database from "@tauri-apps/plugin-sql";
 import { StoreService } from './store.service';
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';

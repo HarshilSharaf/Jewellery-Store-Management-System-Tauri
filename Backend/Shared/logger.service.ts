@@ -1,4 +1,4 @@
-import { info, error } from 'tauri-plugin-log-api';
+import { info, error } from '@tauri-apps/plugin-log';
 import { Injectable } from '@angular/core';
 import { LoggerServiceInterface } from 'client/app/interfaces/Shared/logger-service-interface';
 
